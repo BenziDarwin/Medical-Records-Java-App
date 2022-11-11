@@ -5,7 +5,10 @@
 package village.clinic.records;
 
 import java.awt.Color;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,10 +21,18 @@ public class Dashboard extends javax.swing.JFrame {
      * Creates new form Dashboard
      */
     public Dashboard() {
+        DefaultTableModel tableModel1 = new DefaultTableModel() {
+            public boolean isCellVisible(int row, int column) {
+                // All cells false
+                return false;
+            }
+        };
         initComponents();
         setVisible(jPanel2, true);
         setVisible(jPanel7, false);
         setVisible(jPanel6, false);
+        jTable2.setModel(tableModel1);
+        jTable3.setModel(tableModel1);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,7 +79,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(937, 620));
-        setPreferredSize(new java.awt.Dimension(937, 620));
 
         jPanel3.setBackground(new java.awt.Color(195, 238, 243));
 
@@ -169,7 +179,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setText("Clinic Records");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -233,15 +243,13 @@ public class Dashboard extends javax.swing.JFrame {
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Date", "CustomerID", "Customer Name", "Prescription", "Total Bill"
             }
         ));
+        jTable3.setRowHeight(40);
         jScrollPane3.setViewportView(jTable3);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -252,7 +260,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE))
                 .addGap(80, 80, 80))
         );
         jPanel7Layout.setVerticalGroup(
@@ -271,15 +279,13 @@ public class Dashboard extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Drug Name", "Quantity In Stock", "Price"
             }
         ));
+        jTable2.setRowHeight(40);
         jScrollPane2.setViewportView(jTable2);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -309,7 +315,7 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(137, 137, 137)
                         .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(201, Short.MAX_VALUE))))
+                        .addContainerGap(195, Short.MAX_VALUE))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,10 +352,7 @@ public class Dashboard extends javax.swing.JFrame {
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "DrugName", "Quantity", "Unit Price", "Total Price"
@@ -363,6 +366,7 @@ public class Dashboard extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTable1.setRowHeight(40);
         jScrollPane1.setViewportView(jTable1);
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -387,9 +391,19 @@ public class Dashboard extends javax.swing.JFrame {
 
         button2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         button2.setLabel("Confirm");
+        button2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                button2MouseClicked(evt);
+            }
+        });
 
         button3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         button3.setLabel("Clear");
+        button3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                button3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -419,7 +433,7 @@ public class Dashboard extends javax.swing.JFrame {
                                 .addGap(61, 61, 61)
                                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(72, Short.MAX_VALUE))
+                        .addContainerGap(66, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -463,7 +477,7 @@ public class Dashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(809, Short.MAX_VALUE))
+                .addContainerGap(797, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(132, 132, 132)
@@ -578,6 +592,21 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void button3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button3MouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+        tableModel.setRowCount(0);
+    }//GEN-LAST:event_button3MouseClicked
+
+    private void button2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button2MouseClicked
+        // TODO add your handling code here:
+        JFrame frame = new JFrame("Print");
+        if(JOptionPane.showConfirmDialog(frame, "Confirm and print?","Print Receipt",JOptionPane.YES_NO_OPTION)== JOptionPane.YES_OPTION) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+        tableModel.setRowCount(0);
+        }
+    }//GEN-LAST:event_button2MouseClicked
     
     public void setColor(JPanel panel) {
         panel.setBackground(new Color(255,255,255));
@@ -590,6 +619,7 @@ public class Dashboard extends javax.swing.JFrame {
     public static void setVisible(JPanel panel, boolean _bool) {
         panel.setVisible(_bool);
     }
+    
 
     /**
      * @param args the command line arguments
